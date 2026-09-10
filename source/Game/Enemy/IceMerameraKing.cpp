@@ -141,14 +141,7 @@ void IceMerameraKing::init(const JMapInfoIter& rIter) {
     MR::registerDemoActionNerve(this, &NrvIceMerameraKing::HostTypeNrvBeginDemo::sInstance, nullptr);
 
     mSpinParticle = new MerameraParticleCallBack();
-    { //mJointController = MR::createJointDelegatorWithNullChildFunc(this, &IceMerameraKing::calcJoint, "JointRoot");
-        JointControlDelegator< IceMerameraKing >* delegator = new JointControlDelegator< IceMerameraKing >();
-        MR::setJointControllerParam(delegator, this, "JointRoot");
-        delegator->mObjPtr = this;
-        delegator->mCalcJointMtxFunc = &IceMerameraKing::calcJoint;
-        delegator->mCalcJointMtxAfterChildFunc = nullptr;
-        mJointController = delegator;
-    }
+    mJointController = MR::createJointDelegatorWithNullChildFunc(this, &IceMerameraKing::calcJoint, "JointRoot");
 
 #pragma region Init Rocks
     JMapInfo* InitActor = MR::createInitActorCsvParser(objectName, NULL);
